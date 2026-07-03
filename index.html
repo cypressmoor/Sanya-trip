@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三亚✈️ 7.4–7.7</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fdfaf6;
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #222;
+    padding: 32px 20px 60px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* 封面标题 */
+  .cover {
+    text-align: center;
+    margin-bottom: 36px;
+    padding-top: 8px;
+  }
+  .cover .trip-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+  }
+  .cover .trip-sub {
+    font-size: 13px;
+    color: #999;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .cover .divider {
+    margin: 14px auto 0;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, #7ec8c8, #f4a9a8);
+    border-radius: 2px;
+  }
+
+  /* Day 块 */
+  .day-block {
+    margin-bottom: 40px;
+  }
+
+  /* Day 标题行 */
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .day-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3aada8;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .day-date {
+    font-size: 12px;
+    color: #aaa;
+    white-space: nowrap;
+  }
+  .day-theme {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .day-line {
+    flex: 1;
+    height: 1px;
+    background: #e8e0d8;
+  }
+
+  /* 条目 */
+  .entry {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  /* 时间 */
+  .time {
+    min-width: 108px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5b8ecf;
+    padding-top: 1px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .time.green { color: #4caf82; }
+  .time.orange { color: #e8944a; }
+  .time.teal { color: #3aada8; }
+
+  /* 内容区 */
+  .content {
+    flex: 1;
+  }
+  .main-text {
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .note {
+    font-size: 12px;
+    color: #b07a4e;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .note.purple { color: #8b6ab5; }
+  .note.red { color: #d96060; }
+  .note.teal { color: #3aada8; }
+
+  /* 票价 / 费用 tag */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    background: #fff0e6;
+    color: #c07030;
+    margin-left: 6px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  .tag.blue { background: #e8f0fb; color: #4a7cc7; }
+  .tag.green { background: #e6f5ee; color: #3a8f60; }
+  .tag.red { background: #fdeaea; color: #c04040; }
+
+  /* 子景点列表（西岛打卡那种） */
+  .spot-list {
+    margin-top: 6px;
+  }
+  .spot-item {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.8;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .spot-num {
+    font-size: 12px;
+    color: #8b6ab5;
+    min-width: 16px;
+    font-weight: 500;
+  }
+  .spot-arrow {
+    color: #bbb;
+    font-size: 11px;
+  }
+  .transport-tag {
+    font-size: 11px;
+    color: #3aada8;
+    background: #e6f5f5;
+    padding: 1px 5px;
+    border-radius: 6px;
+    margin-left: 4px;
+  }
+
+  /* 酒店卡片 */
+  .hotel-card {
+    background: linear-gradient(135deg, #f0f9ff, #fef9f0);
+    border: 1px solid #e8ddd0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 10px 0 0 0;
+  }
+  .hotel-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3aada8;
+    margin-bottom: 4px;
+  }
+  .hotel-info {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  /* 分隔线 */
+  .sep {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px dashed #e0d8d0;
+  }
+
+  /* 提醒 banner */
+  .alert-banner {
+    background: #fff8e6;
+    border-left: 3px solid #f0a830;
+    border-radius: 0 8px 8px 0;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #9a6020;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+  .alert-banner.teal {
+    background: #e8f7f6;
+    border-left-color: #3aada8;
+    color: #2a8a85;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="trip-title">三亚 ✈</div>
+  <div class="trip-sub">7.4（周五）— 7.7（周一）· 3-4人</div>
+  <div class="divider"></div>
+</div>
+
+
+<!-- Day 1 -->
+<div class="day-block">
+  <div class="day-header">
+    <span class="day-label">Day 1</span>
+    <span class="day-date">7.4 周五</span>
+    <div class="day-line"></div>
+    <span class="day-theme">前往三亚</span>
+  </div>
+
+  <div class="entry">
+    <div class="time green">08:30 → 10:50</div>
+    <div class="content">
+      <div class="main-text">✈ 重庆江北T3 → 三亚凤凰T3</div>
+      <div class="note">飞行约2小时20分</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time green">11:00 左右</div>
+    <div class="content">
+      <div class="main-text">下飞机 → 酒店接机</div>
+      <div class="note">接机约12分钟 · 前往曼晖泳池度假酒店（凤凰机场店）</div>
+    </div>
+  </div>
+
+  <div class="hotel-card">
+    <div class="hotel-name">🏨 曼晖泳池度假酒店（三亚凤凰机场店）</div>
+    <div class="hotel-info">
+      舒适双床房 · 可住4人 · 住3晚<br>
+      接机 1027r + 两天一晚 384r = <strong>共 1411r</strong><br>
+      最早入住 15:00 &nbsp;|&nbsp; 最晚离开 12:00
+    </div>
+  </div>
+
+  <div class="entry" style="margin-top:12px">
+    <div class="time green">16:15</div>
+    <div class="content">
+      <div class="main-text">到达酒店 → 化妆 💄</div>
+      <div class="note">晚上泳池 🌙</div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- Day 2 -->
+<div class="day-block">
+  <div class="day-header">
+    <span class="day-label">Day 2</span>
+    <span class="day-date">7.5 周六</span>
+    <div class="day-line"></div>
+    <span class="day-theme">西岛 + 天涯海角</span>
+  </div>
+
+  <div class="alert-banner">
+    🎟 提前购买 · 门票 98r · 环岛电动车 60r<br>
+    最早08:00开 · 最晚18:30停 · 上岛约20min
+  </div>
+
+  <div class="entry" style="margin-top:10px">
+    <div class="time teal">08:30 前</div>
+    <div class="content">
+      <div class="main-text">酒店 → 西岛码头</div>
+      <div class="note">约20min · 人最少的时间段</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">上岛后</div>
+    <div class="content">
+      <div class="main-text">西岛打卡路线</div>
+      <div class="spot-list">
+        <div class="spot-item">
+          <span class="spot-num">①</span>
+          出游客中心左走 沿海岸线300m
+          <span class="spot-arrow">→</span> 歪脖子树
+        </div>
+        <div class="spot-item" style="margin-left:22px">
+          <span class="note purple">早到找有树挡着的角度</span>
+        </div>
+        <div class="spot-item">
+          <span class="spot-num">②</span>
+          歪脖子树 → 珊瑚桥 拍照
+        </div>
+        <div class="spot-item">
+          <span class="spot-num">③</span>
+          返回海滨浴场 下海玩水 🌊
+        </div>
+        <div class="spot-item">
+          <span class="spot-num">④</span>
+          孤独的树拍照
+        </div>
+        <div class="spot-item" style="margin-left:22px">
+          <span class="note">时间到中午 → 岛内吃饭</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">下午</div>
+    <div class="content">
+      <div class="main-text">离岛 → 酒店 → 天涯海角</div>
+      <div class="note">酒店到天涯海角约18min</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">16:00</div>
+    <div class="content">
+      <div class="main-text">天涯海角 · 海边拍照</div>
+      <div class="note red">⚠ 门票免费但需提前预约！</div>
+      <div class="note purple">提前踩点树位置</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">18:00</div>
+    <div class="content">
+      <div class="main-text">🌅 树位置拍夕阳</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">拍完后</div>
+    <div class="content">
+      <div class="main-text">天涯小镇吃饭</div>
+      <div class="note">步行44min · 电动车14min · 打车6min</div>
+      <div class="note">吃完坐海边聊天 · 回酒店约16~18min</div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- Day 3 -->
+<div class="day-block">
+  <div class="day-header">
+    <span class="day-label">Day 3</span>
+    <span class="day-date">7.6 周日</span>
+    <div class="day-line"></div>
+    <span class="day-theme">威斯汀 + 大东海</span>
+  </div>
+
+  <div class="entry">
+    <div class="time orange">上午</div>
+    <div class="content">
+      <div class="main-text">威斯汀度假酒店 打卡拍照</div>
+      <div class="note">营业 9:00–24:00 · 酒店出发约37min</div>
+      <div class="note purple">白色度假风穿搭 · 椰林道 / 草坪 / 海景廊</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time orange">下午</div>
+    <div class="content">
+      <div class="main-text">大东海旅游区</div>
+      <div class="note">酒店到大东海4号停车场约34min</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time orange">抵达后</div>
+    <div class="content">
+      <div class="main-text">白框机位拍照 <span class="tag">谷子风</span></div>
+      <div class="note">下走到大东海白框机位 · 白框下有梯子</div>
+      <div class="note purple">裙子 + 黑色泳衣换装</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time orange">之后</div>
+    <div class="content">
+      <div class="main-text">→ 前往沙滩 下海 🌊</div>
+      <div class="note">壳子发型 / 浅水区戏水 / 夕阳椰子树</div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- Day 4 -->
+<div class="day-block">
+  <div class="day-header">
+    <span class="day-label">Day 4</span>
+    <span class="day-date">7.7 周一</span>
+    <div class="day-line"></div>
+    <span class="day-theme">蜈支洲岛 → 回重庆</span>
+  </div>
+
+  <div class="alert-banner teal">
+    🎟 提前小程序预订往返船票 + 门票 140r<br>
+    环岛电瓶车 138r · 身份证过闸机
+  </div>
+  <div class="alert-banner" style="margin-top:6px;">
+    ⚠ <span style="color:#c04040;font-weight:600;">16:00禁止入岛 · 18:30前必须离岛</span><br>
+    <span style="color:#9a6020;">今天有回程航班，务必预留充足时间！</span>
+  </div>
+
+  <div class="entry" style="margin-top:10px">
+    <div class="time teal">08:00</div>
+    <div class="content">
+      <div class="main-text">酒店出发 → 蜈支洲岛码头</div>
+      <div class="note">约43min · 建议坐8点船（排队人少）</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">上岛后</div>
+    <div class="content">
+      <div class="main-text">打卡路线</div>
+      <div class="spot-list">
+        <div class="spot-item">
+          <span class="spot-num">①</span>
+          <strong>海洋之星</strong> — 岩石礁石 · 木栈道
+        </div>
+        <div class="spot-item">
+          <span class="spot-num">②</span>
+          <strong>情人岛</strong>（第四站下）
+        </div>
+        <div class="spot-item" style="margin-left:22px">
+          <span class="note">水果摊边秋千 · 小平台 · 玻璃海机位</span>
+        </div>
+        <div class="spot-item">
+          <span class="spot-num">③</span>
+          <strong>私人定制区</strong> — 邮箱 / 竖琴 / 招牌 / 竹架
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time teal">18:30前</div>
+    <div class="content">
+      <div class="main-text">离岛 → 返回酒店取行李</div>
+      <div class="note red">⚠ 酒店最晚离开 12:00 · 行李提前寄存前台</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time green">当晚</div>
+    <div class="content">
+      <div class="main-text">回酒店休息 · 收拾行李</div>
+      <div class="note red">⚠ 次日航班07:25 · 建议05:00前出门</div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- 回程 -->
+<div class="day-block">
+  <div class="day-header">
+    <span class="day-label">回程</span>
+    <span class="day-date">7.8 周二 凌晨</span>
+    <div class="day-line"></div>
+    <span class="day-theme">回重庆</span>
+  </div>
+
+  <div class="entry">
+    <div class="time green">05:00前</div>
+    <div class="content">
+      <div class="main-text">出发前往三亚凤凰T3</div>
+      <div class="note red">⚠ 07:25起飞 · 提前至少2h到机场</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="time green">07:25 → 10:00</div>
+    <div class="content">
+      <div class="main-text">✈ 三亚凤凰T3 → 重庆江北T3</div>
+      <div class="note">飞行约2小时35分 · 平安到家 🏠</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 底部费用概览 -->
+<div style="margin-top:8px; background:#f5f0ea; border-radius:12px; padding:14px 16px;">
+  <div style="font-size:13px; font-weight:700; color:#555; margin-bottom:8px;">💰 费用速览（人均参考）</div>
+  <div style="font-size:12px; color:#666; line-height:2;">
+    酒店3晚 · 1411r（含接机）<br>
+    西岛 · 门票98r + 电动车60r = <strong>158r</strong><br>
+    天涯海角 · 免费（提前预约）<br>
+    蜈支洲岛 · 船票+门票140r + 电瓶车138r = <strong>278r</strong>
+  </div>
+</div>
+
+</body>
+</html>
